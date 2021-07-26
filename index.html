@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <!--32516 Internet Programming - Autumn 2021-->
+  <!--Name: Tao Chen-->
+  <!--Student ID: 13443142-->
+  <!--Assignment 2-->
+  <title>Hertz-UTS</title>
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="script.js"></script>
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body onload="get_json_data()">
+  <div id="page_header" class="page_header">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Hertz-UTS</a>
+      <div class="float-sm-right float-md-right float-lg-right float-xl-right" id="shoppingBtn">
+        <button id="btn_shopping_cart" class="btn" onClick="showShoppingCart()" style="display:inline;">Car Reservation</button>
+      </div>
+      
+  
+  </nav>
+
+
+
+
+
+  </div>
+  <div id="list_car" class="page1 container">
+
+  </div>
+  <!--<div>-->
+  <!--  <table class="car_table">-->
+  <!--    <tbody id="table_body_row"><tr><td class="car_image">car image</td></tr>-->
+  <!--    <tr><td class="brand_model_year">car brand_model_year</td></tr>-->
+  <!--    <tr><td class="mileage">Mileage: </td></tr>-->
+  <!--    <tr><td class="fuel_type">Fuel Type: </td></tr>-->
+  <!--    <tr><td class="seats">Seats: </td></tr>-->
+  <!--    <tr><td class="price_per_day">Price Per Day: </td></tr>-->
+  <!--    <tr><td class="availability">Availability: </td></tr>-->
+  <!--    <tr><td class="description">Description: </td></tr></tbody>-->
+
+  <!--            <tbody id="table_body_row"<tr><td class="car_image">car image</td></tr>-->
+  <!--    <tr><td class="brand_model_year">car brand_model_year</td></tr>-->
+  <!--    <tr><td class="mileage">Mileage: </td></tr>-->
+  <!--    <tr><td class="fuel_type">Fuel Type: </td></tr>-->
+  <!--    <tr><td class="seats">Seats: </td></tr>-->
+  <!--    <tr><td class="price_per_day">Price Per Day: </td></tr>-->
+  <!--    <tr><td class="availability">Availability: </td></tr>-->
+  <!--    <tr><td class="description">Description: </td></tr>-->
+  <!--    </tbody>-->
+
+  <!--  </table>-->
+  <!--</div>-->
+  <div id="shopping_cart" class="page2" style="display: none;">
+    <div id="car_reservation">
+      <table class="table">
+        <tr>
+          <thead class="thead-light">
+            <th scope="col">Thumbnail</th>
+            <th scope="col">Vehicle</th>
+            <th scope="col">Price Per Day</th>
+            <th scope="col">Rental Days</th>
+            <th scope="col">Actions</th>
+          </thead>
+        </tr>
+        <tbody id="shopping_cart_table_body">
+
+        </tbody>
+      </table>
+
+      <a class="btn btn-primary" onClick="process_to_checkout()" style="float: right;">Proceeding to Checkout</a>
+    </div>
+  </div>
+
+
+  <div id="checkout_detail" class="page3" style="display: none;">
+
+
+
+
+    <table class="table">
+      <tr>
+        <td><label for="fname">First name* </label></td>
+        <td><input type="text" id="fname" name="fname" required><br><br></td>
+      </tr>
+      <tr>
+        <td>
+          <label for="lname">Last name* </label>
+        </td>
+        <td>
+          <input type="text" id="lname" name="lname" required><br><br>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="emailaddress">Email Address* </label>
+        </td>
+        <td>
+          <input type="email" id="emailaddress" name="emailaddress" required><br><br>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="addressline1">Address Line 1* </label>
+        </td>
+        <td>
+          <input type="text" id="addressline1" name="addressline1" required><br><br>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="addressline2">Address Line 2: </label>
+        </td>
+        <td>
+          <input type="text" id="addressline2" name="addressline2"><br><br>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="city">City* </label>
+        </td>
+        <td>
+          <input type="text" id="city" name="city" required><br><br>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="state">State* </label>
+        </td>
+        <td>
+          <select id="state" name="state" style="width:182px; height:30px;" required>
+            <option value="ACT">ACT</option>
+            <option value="NSW">NSW</option>
+            <option value="VIC">VIC</option>
+            <option value="QLD">QLD</option>
+            <option value="TAS">TAS</option>
+            <option value="WA">WA</option>
+            <option value="NT">NT</option>
+            <option value="SA">SA</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="postcode">Postcode* </label>
+        </td>
+        <td>
+          <input type="text" id="postcode" name="postcode" required><br><br>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="paymenttype">Payment Type* </label>
+        </td>
+        <td>
+          <select id="paymenttype" name="paymenttype" style="width:182px; height:30px;" required>
+            <option value="VISA">VISA</option>
+            <option value="Mastercard">Mastercard</option>
+            <option value="American Express">American Express</option>
+          </select><br><br>
+        </td>
+      </tr>
+    </table>
+    <button type="button" class="btn btn-primary" onClick="booking()" id="booking" style="float: right; margin: 10px;">Booking</button>
+    <!--<button type="button" class="btn btn-primary" onClick="back_to_selection()" id="back_to_select_cars" style="float: right; margin: 10px;">Continue Selection</button>-->
+
+
+
+
+  </div>
+  <div id="delivery_detail_and_cost" class="page3" style="display: none;">
+    <p id="deliveryname"></p>
+    <p id="deliveryaddress"></p>
+    <p id="deliverypayemnttype"></p>
+    <p id="deliverytotalcost"></p>
+  </div>
+  
+</body>
+
+</html>

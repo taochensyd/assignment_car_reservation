@@ -1,0 +1,26 @@
+[  {
+    "id":1,
+    "category":"sedan",
+    "availability":true,
+    "brand":"Toyota",
+    "model":"Camry",
+    "model_year":2013,
+    "mileage":15325,
+    "fuel_type":"petrol",
+    "seats":5,
+    "price_per_day":120,
+    "descriptions":"Car description for Toyota Camry."
+  },
+  {
+    "id":2,
+    "category":"sedan",
+    "availability":true,
+    "brand":"BMW",
+    "model":"320i",
+    "model_year":2018,
+    "mileage":5000,
+    "fuel_type":"petrol",
+    "seats":5,
+    "price_per_day":350,
+    "descriptions":"Car description for BMW 320i."
+  }]
